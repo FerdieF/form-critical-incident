@@ -49,7 +49,7 @@
             </button>
 
             <!-- Logo (mobile only) -->
-            <a href="/" class="xl:hidden text-base font-bold text-primary">
+            <a href="/" class="xl:hidden text-base font-bold text-gray-900 dark:text-white">
                 Form Peserta Asesmen
             </a>
 
