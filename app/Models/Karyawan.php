@@ -11,7 +11,7 @@ class Karyawan extends Model
 
     // Pastikan nama tabelnya sesuai
     protected $table = 'karyawans';
-    
+
     // Buka gembok biar semua kolom bisa diisi dari form
     protected $guarded = ['id'];
 

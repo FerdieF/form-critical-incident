@@ -17,6 +17,6 @@ class DetailPekerjaan extends Model
         'tanggung_jawab',
         'uraian_tanggung_jawab',
     ];
-    
+
     // ... relasi ke Karyawan jika ada ...
 }

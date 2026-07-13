@@ -16,7 +16,7 @@ class Bawahan extends Model
         'bagian',
         'peran',
     ];
-    
+
     // Relasi balik ke tabel Karyawan (Opsional tapi sangat disarankan)
     public function karyawan()
     {

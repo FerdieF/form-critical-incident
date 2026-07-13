@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HrdController;
+use Illuminate\Support\Facades\Route;
 
 // Otomatis arahkan halaman depan ke login
 Route::redirect('/', '/login');
@@ -14,30 +14,30 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
 // ==========================================================
 // RUTE WAJIB LOGIN (DIJAGA SATPAM MIDDLEWARE)
 // ==========================================================
 Route::middleware(['auth'])->group(function () {
-    
+
     // --- DASHBOARD & PROFILE ---
     // Pintu masuk utama: kita arahkan sesuai ROLE user
     Route::get('/dashboard', function () {
         if (auth()->user()->role === 'admin') {
             return redirect()->route('admin.dashboard');
         }
+
         return redirect()->route('user.dashboard');
     })->name('dashboard');
 
     // Dashboard Admin (Memanggil fungsi indexAdmin di HrdController)
-    Route::get('/admin/dashboard', [App\Http\Controllers\HrdController::class, 'indexAdmin'])
+    Route::get('/admin/dashboard', [HrdController::class, 'indexAdmin'])
         ->name('admin.dashboard')
         ->middleware('auth'); // Pastikan login dulu
 
-        // --- MENU KHUSUS ADMIN ---
+    // --- MENU KHUSUS ADMIN ---
     Route::get('/admin/tambah-peserta', [HrdController::class, 'createPeserta'])->name('admin.peserta.create');
     Route::post('/admin/tambah-peserta', [HrdController::class, 'storePeserta'])->name('admin.peserta.store');
-    
+
     // Route untuk cetak PDF semua karyawan
     Route::get('/admin/cetak-semua-pdf', [HrdController::class, 'cetakSemuaPdf'])->name('admin.print_semua_pdf');
 
@@ -46,10 +46,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Dashboard User (Rekap untuk peserta)
     Route::get('/user/dashboard', function () {
-        $karyawan = auth()->user()->karyawan; 
+        $karyawan = auth()->user()->karyawan;
+
         return view('pages.dashboard.user', [
             'title' => 'Dashboard Peserta',
-            'karyawan' => $karyawan
+            'karyawan' => $karyawan,
         ]);
     })->name('user.dashboard')->middleware('auth');
 
@@ -57,14 +58,10 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.profile', ['title' => 'Profile']);
     })->name('profile');
 
-
     // --- MENU KHUSUS ADMIN ---
     Route::get('/data-karyawan', [HrdController::class, 'indexKaryawan'])->name('admin.karyawan.index');
     Route::get('/data-karyawan/{id}/detail', [HrdController::class, 'showKaryawan'])->name('admin.karyawan.show');
     Route::get('/data-critical-incident', [HrdController::class, 'indexCriticalIncident'])->name('admin.incident.index');
-
-    
-
 
     // --- MENU FORM ASESMEN PESERTA ---
     Route::get('/form-karyawan', [HrdController::class, 'create'])->name('form.create');
@@ -96,5 +93,5 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-// Sisa rute template UI Elements (Charts, Buttons, dll) boleh kamu taruh di bawah sini jika masih mau dipakai untuk referensi desain. 
+// Sisa rute template UI Elements (Charts, Buttons, dll) boleh kamu taruh di bawah sini jika masih mau dipakai untuk referensi desain.
 // Tapi sangat disarankan untuk DIBUANG saja jika tidak dipakai agar aplikasi tidak berat.

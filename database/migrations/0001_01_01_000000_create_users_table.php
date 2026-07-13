@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            
+
             // UBAH BARIS INI: dari 'email' menjadi 'nik_sap'
-            $table->string('nik_sap')->unique(); 
-            
+            $table->string('nik_sap')->unique();
+
             $table->timestamp('email_verified_at')->nullable(); // Ini biarkan saja atau hapus juga gapapa
             $table->string('password');
             $table->rememberToken();

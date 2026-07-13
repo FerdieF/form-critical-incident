@@ -13,7 +13,7 @@ class UsahaAspirasi extends Model
     protected $fillable = [
         'karyawan_id',
         'bidang_diminati',
-        // WAJIB DITAMBAHKAN: Jika di form tabel usaha kamu ada kolom lain 
+        // WAJIB DITAMBAHKAN: Jika di form tabel usaha kamu ada kolom lain
         // (misalnya 'alasan', 'upaya', dll), masukkan juga nama-nama kolomnya di bawah ini!
     ];
 

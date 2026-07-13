@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User; // Pastikan model User dipanggil
+use Illuminate\Support\Facades\Hash; // Pastikan model User dipanggil
 
 class UserSeeder extends Seeder
 {
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'name' => 'Peserta Ujian',
             'nik_sap' => '2002002', // Contoh NIK SAP Peserta
             'password' => Hash::make('password123'),
-            'role' => 'user', 
+            'role' => 'user',
         ]);
     }
 }
