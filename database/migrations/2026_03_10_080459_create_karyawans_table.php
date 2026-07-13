@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('karyawans', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap');
-            
+
             // PASTIKAN BARIS INI ADA DAN NAMANYA TEPAT 'nik_sap'
-            $table->string('nik_sap')->unique(); 
-            
+            $table->string('nik_sap')->unique();
+
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');

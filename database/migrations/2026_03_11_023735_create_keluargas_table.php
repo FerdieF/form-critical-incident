@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('keluargas', function (Blueprint $table) {
             $table->id();
             // Ini penghubung ke tabel karyawan
-            $table->foreignId('karyawan_id')->constrained('karyawans')->onDelete('cascade'); 
+            $table->foreignId('karyawan_id')->constrained('karyawans')->onDelete('cascade');
             $table->string('hubungan'); // Istri/Suami, Anak 1, Anak 2, dst.
             $table->string('nama')->nullable();
             $table->enum('jenis_kelamin', ['L', 'P'])->nullable();

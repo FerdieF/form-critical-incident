@@ -11,6 +11,6 @@ class MinatHarapan extends Model
         'hal_disukai',
         'hal_tidak_disukai',
         'alasan_memilih_karier',
-        'aspirasi_lima_tahun'
+        'aspirasi_lima_tahun',
     ];
 }

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('critical_incidents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('karyawan_id')->constrained('karyawans')->onDelete('cascade');
-            
+
             // Kolom ini buat ngebedain mana insiden Sukses, mana insiden Gagal
-            $table->enum('jenis_insiden', ['Sukses', 'Gagal']); 
-            
+            $table->enum('jenis_insiden', ['Sukses', 'Gagal']);
+
             $table->string('topik')->nullable();
             $table->string('waktu_kejadian')->nullable();
             $table->text('kejadian')->nullable();
