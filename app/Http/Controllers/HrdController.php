@@ -36,6 +36,16 @@ class HrdController extends Controller
         return view('pages.form.form', compact('karyawan')); // Sesuaikan nama view-mu
     }
 
+    /**
+     * Menyimpan atau memperbarui data identitas diri karyawan (Tahap 1).
+     *
+     * Initial state : Form identitas diri telah divalidasi dari request.
+     * Final state   : Data karyawan tersimpan/terupdate di tabel `karyawans`,
+     *                  lalu user diarahkan ke form susunan keluarga (Tahap 2).
+     *
+     * @author  Ferdi Akbar Nasution
+     * @version 1.0 - 2026-07-13
+     */
     public function store(Request $request)
     {
         $request->validate([

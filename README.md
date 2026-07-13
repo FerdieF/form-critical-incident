@@ -47,6 +47,32 @@ Catatan:
 - Set `SEED_DB=true` kalau mau seeder akun awal ikut dijalankan.
 - Asset frontend (Vite + Tailwind) sudah di-build di dalam image, jadi tidak perlu Node.js di server.
 
+## Struktur Folder
+
+```
+app/
+├── Http/Controllers/   # AuthController (login), HrdController (alur form asesmen), DashboardController
+├── Models/             # Karyawan + relasinya: Keluarga, Pendidikan, PengalamanKerja,
+│                       # DetailPekerjaan, Bawahan, KondisiKerja, MinatHarapan,
+│                       # UsahaAspirasi, KekuatanKelemahan, CriticalIncident, User
+database/
+├── migrations/         # Skema tabel, urut sesuai alur pengisian form
+├── seeders/            # UserSeeder: akun awal admin & peserta
+resources/
+├── views/
+│   ├── auth/            # Halaman login
+│   ├── layouts/         # Layout utama, sidebar, header
+│   ├── components/      # Komponen blade yang dipakai berulang (preloader, dsb.)
+│   └── pages/
+│       ├── admin/        # Halaman khusus HRD (monitoring, tambah peserta)
+│       ├── dashboard/    # Dashboard peserta
+│       └── form/         # Tahapan form asesmen (identitas, keluarga, pendidikan, dst.)
+docker/
+└── entrypoint.sh        # Setup APP_KEY, migrasi, dan seeder saat container start
+```
+
+Setiap tabel di `database/migrations` merepresentasikan satu tahap form dan terhubung ke `karyawans` lewat `karyawan_id`, mengikuti urutan pengisian: Identitas Diri → Keluarga → Pendidikan → Pekerjaan → Detail Pekerjaan → Kondisi Kerja → Minat & Harapan → Kekuatan & Kelemahan → Critical Incident.
+
 ## Menjalankan secara lokal (tanpa Docker)
 
 Butuh PHP >= 8.2, Composer, Node.js, dan MySQL.

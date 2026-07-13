@@ -136,6 +136,22 @@
 
     </div>
 
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: "Good job!",
+                    text: @json(session('success')),
+                    icon: "success",
+                    confirmButtonColor: '#10B981'
+                });
+            });
+        </script>
+    @endif
+
 </body>
 
 @stack('scripts')
